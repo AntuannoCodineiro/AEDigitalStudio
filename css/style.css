@@ -310,6 +310,26 @@ button.btn { border: 0; cursor: pointer; }
 .legal-foot a { text-decoration: underline; text-underline-offset: 4px; }
 .consent a { text-decoration: underline; text-underline-offset: 3px; }
 
+/* ---------- cookie consent ---------- */
+.linklike { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.consent-bar {
+  position: fixed; left: var(--m); right: var(--m); bottom: var(--m); z-index: 50;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 28px;
+  padding: 20px 24px; background: var(--ink); color: var(--bone);
+  animation: bar-in .45s cubic-bezier(.2,.8,.2,1);
+}
+.consent-bar p { margin: 0; max-width: 68ch; }
+.consent-bar a { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+.consent-bar .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.consent-bar button {
+  min-height: 48px; padding: 0 26px; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--bone); color: var(--ink); font: 500 var(--step-body)/1 var(--face);
+  transition: background-color .18s, transform .18s;
+}
+.consent-bar button:hover { background: #fff; transform: translateY(-2px); }
+@keyframes bar-in { from { opacity: 0; transform: translateY(24px); } }
+@media (min-width: 901px) { .consent-bar { left: auto; max-width: 620px; } }
+
 /* ---------- phone / tablet ---------- */
 @media (max-width: 900px) {
   .legal { display: flex; flex-direction: column; align-items: stretch; }
@@ -363,5 +383,7 @@ button.btn { border: 0; cursor: pointer; }
   .js .line > span { transform: none; animation: none; }
   .status i { animation: none; }
   .btn { transition: none; }
+  .consent-bar { animation: none; }
+  .consent-bar button { transition: none; }
   .qa[open] .answer, .qa summary::before { animation: none; transition: none; }
 }
