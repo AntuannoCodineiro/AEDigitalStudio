@@ -55,7 +55,7 @@
     bar.className = 'consent-bar';
     bar.setAttribute('role', 'dialog');
     bar.setAttribute('aria-label', 'Zgoda na cookies');
-    bar.innerHTML = '<p>Używam Google Analytics, żeby zobaczyć, ile osób odwiedza stronę. Włączę go tylko, jeśli się zgodzisz. Szczegóły w <a href="polityka-prywatnosci.html">polityce prywatności</a>.</p>'
+    bar.innerHTML = '<p>Używam Google Analytics, żeby zobaczyć, ile osób odwiedza stronę. Włączę go tylko, jeśli się zgodzisz. Szczegóły w <a href="/polityka-prywatnosci/">polityce prywatności</a>.</p>'
       + '<div class="actions"><button type="button" data-choice="granted">Akceptuję</button><button type="button" data-choice="denied">Odrzucam</button></div>';
     bar.addEventListener('click', (e) => {
       const b = e.target.closest('button[data-choice]');
