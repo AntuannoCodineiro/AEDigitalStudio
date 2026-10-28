@@ -57,7 +57,7 @@
       '',
       'Pozdrawiam',
     ].join('\n');
-    send.href = 'mailto:kontakt@aedigital.pl?subject=' + encodeURIComponent('Brief na stronę: ' + text(who)) + '&body=' + encodeURIComponent(body);
+    send.href = 'mailto:kontakt@aedigitalstudio.pl?subject=' + encodeURIComponent('Brief na stronę: ' + text(who)) + '&body=' + encodeURIComponent(body);
   };
   [who, goal, budget, when, have, mail, ...extras].forEach((el) => el && el.addEventListener('input', update));
   update();

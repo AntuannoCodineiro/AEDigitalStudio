@@ -254,7 +254,7 @@ ul { list-style: none; }
 .thanks { margin-top: clamp(64px, 9vw, 130px); display: flex; align-items: center; gap: clamp(20px, 3vw, 48px); }
 .big {
   display: block; margin-top: auto; padding-top: 64px;
-  font: 700 8.4vw/0.9 var(--face); letter-spacing: -0.055em; text-decoration: none; color: var(--red-ink);
+  font: 700 7.2vw/0.9 var(--face); letter-spacing: -0.055em; text-decoration: none; color: var(--red-ink);
 }
 .big:hover { text-decoration: underline; text-decoration-thickness: .05em; text-underline-offset: .08em; }
 .foot-meta { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); font-size: var(--step-small); font-weight: 500; }
@@ -296,7 +296,7 @@ ul { list-style: none; }
   .chip select { max-width: calc(100vw - 32px); }
 
   .thanks { flex-direction: column; align-items: flex-start; }
-  .big { font-size: 12.4vw; padding-top: 56px; }
+  .big { font-size: 9.6vw; padding-top: 56px; }
   .foot-top { display: flex; flex-direction: column; gap: 10px; }
   .up { align-self: flex-start; margin-top: 10px; }
   .foot-meta { display: flex; flex-direction: column; gap: 6px; }
