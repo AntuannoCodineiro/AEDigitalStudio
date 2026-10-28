@@ -295,9 +295,9 @@ button.btn { border: 0; cursor: pointer; }
 .menu {
   position: fixed; inset: 0; z-index: 60;
   display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
-  padding: 24px var(--m) calc(32px + env(safe-area-inset-bottom)); background: var(--red); color: var(--ink);
+  padding: 24px var(--m) calc(32px + env(safe-area-inset-bottom)); background: var(--bone); color: var(--ink);
   overflow-y: auto; overscroll-behavior: contain;
-  opacity: 0; transition: opacity .26s ease;
+  opacity: 0; transition: opacity .2s ease;
 }
 .menu[hidden] { display: none; }
 .menu.open { opacity: 1; }
@@ -307,7 +307,7 @@ button.btn { border: 0; cursor: pointer; }
   background: var(--ink); color: var(--bone); font: 500 var(--step-small)/1 var(--face);
 }
 .menu-links { display: grid; gap: 4px; justify-items: start; }
-.menu-links a:not(.btn) { padding: 6px 0; font: 700 var(--step-head)/1 var(--face); letter-spacing: -0.045em; text-decoration: none; }
+.menu-links a:not(.btn) { color: var(--red-ink); padding: 6px 0; font: 700 var(--step-head)/1 var(--face); letter-spacing: -0.045em; text-decoration: none; }
 .menu-links a:not(.btn):hover { text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .1em; }
 .menu-links > *, .menu-mail { opacity: 0; transform: translateY(14px); transition: opacity .35s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
 .menu.open .menu-links > *, .menu.open .menu-mail { opacity: 1; transform: none; }
@@ -318,7 +318,7 @@ button.btn { border: 0; cursor: pointer; }
 .menu.open .menu-links > :nth-child(5) { transition-delay: .22s; }
 .menu.open .menu-links > :nth-child(6) { transition-delay: .26s; }
 .menu.open .menu-mail { transition-delay: .30s; }
-.menu-cta { margin-top: 20px; background: var(--ink); color: var(--bone); }
+.menu-cta { margin-top: 20px; }
 .menu-mail { font-size: var(--step-body); font-weight: 500; padding: 12px 0; text-decoration: underline; text-underline-offset: 4px; }
 .menu:focus { outline: none; }
 .menu-open { overflow: hidden; }

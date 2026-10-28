@@ -22,12 +22,9 @@
   if (menu && menuBtn) {
     const closeBtn = menu.querySelector('.menu-close');
     const focusable = () => [...menu.querySelectorAll('a[href], button')];
-    const themeMeta = document.querySelector('meta[name="theme-color"]');
-    const themeClosed = themeMeta ? themeMeta.content : '';
     const setOpen = (open) => {
       menuBtn.setAttribute('aria-expanded', String(open));
       document.documentElement.classList.toggle('menu-open', open);
-      if (themeMeta) themeMeta.content = open ? '#e53b2b' : themeClosed;
       if (open) {
         menu.hidden = false;
         void menu.offsetWidth; // render the transparent state once, so the fade can run
