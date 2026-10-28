@@ -16,6 +16,34 @@
     items.forEach((el) => io.observe(el));
   }
 
+  // phone menu
+  const menu = document.getElementById('menu');
+  const menuBtn = document.querySelector('.menu-btn');
+  if (menu && menuBtn) {
+    const closeBtn = menu.querySelector('.menu-close');
+    const focusable = () => [...menu.querySelectorAll('a[href], button')];
+    const setOpen = (open) => {
+      menu.classList.toggle('open', open);
+      menu.setAttribute('aria-hidden', String(!open));
+      menuBtn.setAttribute('aria-expanded', String(open));
+      document.documentElement.classList.toggle('menu-open', open);
+      if (open) menu.focus(); else menuBtn.focus({ preventScroll: true });
+    };
+    menuBtn.addEventListener('click', () => setOpen(true));
+    closeBtn.addEventListener('click', () => setOpen(false));
+    menu.addEventListener('click', (e) => { if (e.target.closest('[data-menu-close]')) setOpen(false); });
+    addEventListener('keydown', (e) => {
+      if (!menu.classList.contains('open')) return;
+      if (e.key === 'Escape') { setOpen(false); return; }
+      if (e.key !== 'Tab') return;
+      const f = focusable();
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    matchMedia('(min-width: 901px)').addEventListener('change', (e) => { if (e.matches && menu.classList.contains('open')) setOpen(false); });
+  }
+
   // the brief: a sentence the visitor completes, sent straight from the page
   const $ = (id) => document.getElementById(id);
   const form = $('briefForm');
@@ -94,6 +122,7 @@
       if (!res.ok || !data.success) throw new Error(data.message || res.status);
       say(document.createTextNode('Dziękuję, brief poszedł. Odpowiem na podany adres w ciągu jednego dnia roboczego.'));
       send.textContent = 'Wysłano';
+      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { form: 'brief' }); // only exists after consent
     } catch (err) {
       send.disabled = false;
       send.textContent = 'Wyślij brief →';
