@@ -366,7 +366,7 @@ button.btn { border: 0; cursor: pointer; }
   .chip select { max-width: calc(100vw - 32px); }
 
   .thanks { flex-direction: column; align-items: flex-start; }
-  .big { font-size: 9.6vw; padding-top: 56px; }
+  .big { font-size: calc((100vw - 2 * var(--m)) / 11.7); white-space: nowrap; padding-top: 56px; }
   .foot-top { display: flex; flex-direction: column; gap: 10px; }
   .up { align-self: flex-start; margin-top: 10px; }
   .foot-meta { display: flex; flex-direction: column; gap: 6px; }
