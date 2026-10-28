@@ -342,7 +342,7 @@ button.btn { border: 0; cursor: pointer; }
 .menu.open .menu-mail { transition-delay: .30s; }
 .menu-cta { margin-top: 20px; }
 .menu-mail { font-size: var(--step-body); font-weight: 500; padding: 12px 0; text-decoration: underline; text-underline-offset: 4px; }
-.menu:focus { outline: none; }
+.menu:focus, [tabindex="-1"]:focus { outline: none; }
 .menu-open { overflow: hidden; }
 
 /* ---------- 404 ---------- */
