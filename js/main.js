@@ -21,7 +21,7 @@
   const form = $('briefForm');
   const who = $('q-who'), goal = $('q-goal'), budget = $('q-budget'), when = $('q-when'), have = $('q-have');
   const extras = [...document.querySelectorAll('input[name="extra"]')];
-  const mail = $('q-mail'), send = $('sendBrief'), match = $('match'), note = $('formNote');
+  const mail = $('q-mail'), tel = $('q-tel'), send = $('sendBrief'), match = $('match'), note = $('formNote');
   if (!form || !who || !goal || !budget || !when || !have || !extras.length || !send || !mail) return;
 
   const TO = 'kontakt@aedigitalstudio.pl';
@@ -47,6 +47,7 @@
     `Chcę ją mieć ${text(when)}. Mam już: ${text(have)}.`,
     `Do tego: ${extras.filter((x) => x.checked).map((x) => x.value).join(', ') || 'nic więcej'}.`,
     mail.value ? `E-mail: ${mail.value}` : '',
+    tel && tel.value.trim() ? `Telefon: ${tel.value.trim()}` : '',
   ].filter(Boolean).join('\n');
   const mailto = () => `mailto:${TO}?subject=${encodeURIComponent('Brief na stronę: ' + text(who))}&body=${encodeURIComponent('Dzień dobry,\n\n' + brief() + '\n\nPozdrawiam')}`;
 
@@ -84,6 +85,7 @@
           subject: 'Brief na stronę: ' + text(who),
           from_name: 'Formularz na aedigitalstudio.pl',
           email: mail.value,
+          phone: tel ? tel.value.trim() : '',
           message: brief(),
           botcheck: form.elements.botcheck.checked,
         }),
