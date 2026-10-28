@@ -1,7 +1,7 @@
 (() => {
   // Google Analytics loads only after the visitor clicks "Akceptuję".
   // Put the measurement ID (e.g. 'G-XXXXXXXXXX') below; while it is empty nothing is shown or loaded.
-  const DEFAULT_GA_ID = '';
+  const DEFAULT_GA_ID = 'G-3VH45GX74Z';
   const GA_ID = (window.AE_GA_ID || DEFAULT_GA_ID).trim();
 
   const KEY = 'ae-cookie-consent';
