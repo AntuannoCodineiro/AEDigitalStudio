@@ -289,6 +289,9 @@ button.btn { border: 0; cursor: pointer; }
 /* ---------- links that stand alone get a 44px target ---------- */
 .foot-meta a, .foot-meta .linklike, .up, .legal-foot a, .legal-foot .linklike { display: inline-block; padding: 12px 0; }
 .foot-meta p { margin: 0; }
+.foot-brand strong { font-weight: 700; }
+.foot-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0 22px; }
+.legal-foot p { margin: 0; }
 
 /* ---------- menu (phones) ---------- */
 .menu-btn { display: none; }
@@ -442,12 +445,19 @@ button.btn { border: 0; cursor: pointer; }
   .row { font-size: 9vw; padding-left: 16px; padding-right: 16px; }
   .chip select { max-width: calc(100vw - 32px); }
 
-  .thanks { flex-direction: column; align-items: flex-start; }
-  .big { font-size: calc((100vw - 2 * var(--m)) / 11.7); white-space: nowrap; padding-top: 56px; }
-  .foot-top { display: flex; flex-direction: column; gap: 10px; }
-  .up { align-self: flex-start; margin-top: 10px; }
-  .foot-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
-  .foot-meta p:nth-child(2), .foot-meta p:nth-child(3) { text-align: left; }
+  /* footer on a phone: the message first, then who and how, then the small print */
+  .foot { min-height: 0; padding: 72px var(--m) 28px; }
+  .foot-top, .foot-meta { display: contents; }
+  .thanks { order: 1; margin-top: 0; flex-direction: column; align-items: flex-start; }
+  .big { order: 2; padding-top: 12px; font-size: calc((100vw - 2 * var(--m)) / 11.7); white-space: nowrap; }
+  .foot-brand { order: 3; margin-top: 64px; font-size: var(--step-body); }
+  .foot-note { order: 4; margin-top: 14px; max-width: 34ch; font-size: var(--step-body); }
+  .foot-links { order: 5; margin-top: 28px; flex-direction: column; align-items: flex-start; gap: 0; font-size: var(--step-body); }
+  .up { order: 6; align-self: flex-start; font-size: var(--step-body); }
+  .foot .foot-meta p.foot-small { margin: 0; text-align: left; font-size: var(--step-small); font-weight: 500; }
+  .foot .foot-meta p.foot-small:first-of-type { order: 7; margin-top: 28px; }
+  .foot .foot-meta p.foot-small:last-of-type { order: 8; margin-top: 4px; }
+  .legal-foot { flex-direction: column; align-items: flex-start; gap: 0; }
 }
 @media (max-width: 600px) {
   .steps { display: flex; flex-direction: column; }
