@@ -23,11 +23,20 @@
     const closeBtn = menu.querySelector('.menu-close');
     const focusable = () => [...menu.querySelectorAll('a[href], button')];
     const setOpen = (open) => {
-      menu.classList.toggle('open', open);
-      menu.setAttribute('aria-hidden', String(!open));
       menuBtn.setAttribute('aria-expanded', String(open));
       document.documentElement.classList.toggle('menu-open', open);
-      if (open) menu.focus(); else menuBtn.focus({ preventScroll: true });
+      if (open) {
+        menu.hidden = false;
+        void menu.offsetWidth; // let the closed position render once, so the slide can run
+        menu.classList.add('open');
+        menu.focus();
+      } else {
+        menu.classList.remove('open');
+        menuBtn.focus({ preventScroll: true });
+        const done = () => { if (!menu.classList.contains('open')) menu.hidden = true; };
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) done();
+        else { menu.addEventListener('transitionend', done, { once: true }); setTimeout(done, 700); }
+      }
     };
     menuBtn.addEventListener('click', () => setOpen(true));
     closeBtn.addEventListener('click', () => setOpen(false));
