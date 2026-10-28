@@ -22,12 +22,15 @@
   if (menu && menuBtn) {
     const closeBtn = menu.querySelector('.menu-close');
     const focusable = () => [...menu.querySelectorAll('a[href], button')];
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const themeClosed = themeMeta ? themeMeta.content : '';
     const setOpen = (open) => {
       menuBtn.setAttribute('aria-expanded', String(open));
       document.documentElement.classList.toggle('menu-open', open);
+      if (themeMeta) themeMeta.content = open ? '#e53b2b' : themeClosed;
       if (open) {
         menu.hidden = false;
-        void menu.offsetWidth; // let the closed position render once, so the slide can run
+        void menu.offsetWidth; // render the transparent state once, so the fade can run
         menu.classList.add('open');
         menu.focus();
       } else {
@@ -35,7 +38,10 @@
         menuBtn.focus({ preventScroll: true });
         const done = () => { if (!menu.classList.contains('open')) menu.hidden = true; };
         if (matchMedia('(prefers-reduced-motion: reduce)').matches) done();
-        else { menu.addEventListener('transitionend', done, { once: true }); setTimeout(done, 700); }
+        else {
+          menu.addEventListener('transitionend', (e) => { if (e.target === menu && e.propertyName === 'opacity') done(); });
+          setTimeout(done, 600);
+        }
       }
     };
     menuBtn.addEventListener('click', () => setOpen(true));
