@@ -242,6 +242,12 @@ ul { list-style: none; }
 .mail input::placeholder { color: #5c5a52; opacity: 1; }
 .brief .btn { background: var(--ink); color: var(--bone); }
 .brief .btn:hover { background: var(--bone); color: var(--ink); }
+button.btn { border: 0; cursor: pointer; }
+.brief .btn:disabled { opacity: .65; cursor: default; transform: none; }
+.consent { margin: 0; padding: 0 var(--m); max-width: 64ch; font-size: var(--step-small); font-weight: 500; }
+.form-note { margin: 20px var(--m) 0; padding: 16px 20px; max-width: 60ch; background: var(--ink); color: var(--bone); font-weight: 500; }
+.form-note[hidden] { display: none; }
+.form-note a { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
 .match { padding: 28px var(--m) 0; max-width: 56ch; }
 .match a { font-weight: 700; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 2px; }
 

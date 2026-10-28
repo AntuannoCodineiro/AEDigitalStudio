@@ -228,7 +228,7 @@
 
 <section class="brief" id="brief" aria-labelledby="brief-h">
   <h2 id="brief-h" class="head r">opisz, czego potrzebujesz</h2>
-  <form class="sentence" id="briefForm" onsubmit="return false">
+  <form class="sentence" id="briefForm" data-access-key="" novalidate>
     <p class="row r" style="--d:1">
       <span>potrzebuję strony dla</span>
       <span class="chip"><select id="q-who" name="who" aria-label="Dla kogo ma być strona">
@@ -292,9 +292,12 @@
       </div>
     </div>
     <div class="row send-row r" style="--d:5">
-      <label class="mail"><span class="sr">Twój e-mail</span><input id="q-mail" type="email" name="mail" placeholder="twój@e-mail.pl" autocomplete="email"></label>
-      <a class="btn" id="sendBrief" href="mailto:kontakt@aedigitalstudio.pl?subject=Brief%20na%20stron%C4%99">Wyślij brief →</a>
+      <label class="mail"><span class="sr">Twój e-mail</span><input id="q-mail" type="email" name="mail" placeholder="twój@e-mail.pl" autocomplete="email" required></label>
+      <button class="btn" id="sendBrief" type="submit">Wyślij brief →</button>
     </div>
+    <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+    <p class="consent">Wysyłając brief, zgadzasz się, że odpowiem na podany adres e-mail. Dane wykorzystam wyłącznie do odpowiedzi na Twoje zapytanie.</p>
+    <p class="form-note" id="formNote" role="status" aria-live="polite" hidden></p>
   </form>
   <p class="match lead" id="match" aria-live="polite">Najbliżej tego tematu: <a href="#alex">alex ochrona</a>, strona firmowa z kalkulatorem oszczędności.</p>
 </section>
