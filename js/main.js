@@ -61,8 +61,9 @@
   const form = $('briefForm');
   const who = $('q-who'), goal = $('q-goal'), budget = $('q-budget'), when = $('q-when'), have = $('q-have');
   const extras = [...document.querySelectorAll('input[name="extra"]')];
+  const start = $('q-start');
   const mail = $('q-mail'), tel = $('q-tel'), send = $('sendBrief'), match = $('match'), note = $('formNote');
-  if (!form || !who || !goal || !budget || !when || !have || !extras.length || !send || !mail) return;
+  if (!form || !start || !who || !goal || !budget || !when || !have || !extras.length || !send || !mail) return;
 
   const TO = 'kontakt@aedigitalstudio.pl';
   const closest = {
@@ -82,14 +83,20 @@
     'pomaga policzyć ofertę': ['alex', 'alex ochrona', 'kalkulator oszczędności na stronie firmowej'],
   };
   const text = (sel) => sel.options[sel.selectedIndex].textContent.trim();
+  const subjects = {
+    wycena: 'Brief na stronę',
+    makieta: 'Bezpłatna makieta',
+  };
+  const subject = () => `${subjects[start.value]}: ${text(who)}`;
   const brief = () => [
+    `Chcę zacząć od: ${text(start)}.`,
     `Potrzebuję strony dla ${text(who)}, która ${text(goal)}, w budżecie ${text(budget)}.`,
     `Chcę ją mieć ${text(when)}. Mam już: ${text(have)}.`,
     `Do tego: ${extras.filter((x) => x.checked).map((x) => x.value).join(', ') || 'nic więcej'}.`,
     mail.value ? `E-mail: ${mail.value}` : '',
     tel && tel.value.trim() ? `Telefon: ${tel.value.trim()}` : '',
   ].filter(Boolean).join('\n');
-  const mailto = () => `mailto:${TO}?subject=${encodeURIComponent('Brief na stronę: ' + text(who))}&body=${encodeURIComponent('Dzień dobry,\n\n' + brief() + '\n\nPozdrawiam')}`;
+  const mailto = () => `mailto:${TO}?subject=${encodeURIComponent(subject())}&body=${encodeURIComponent('Dzień dobry,\n\n' + brief() + '\n\nPozdrawiam')}`;
 
   const update = () => {
     const c = byGoal[text(goal)] || closest[who.value];
@@ -101,6 +108,9 @@
   };
   [who, goal, budget, when, have, ...extras].forEach((el) => el.addEventListener('input', update));
   update();
+
+  // the free-offer buttons scroll to the brief (nav.js) and pre-select what was asked for
+  document.querySelectorAll('[data-start]').forEach((a) => a.addEventListener('click', () => { start.value = a.dataset.start; }));
 
   const say = (...parts) => { note.hidden = false; note.replaceChildren(...parts); };
   const fallback = () => [
@@ -122,7 +132,7 @@
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: key,
-          subject: 'Brief na stronę: ' + text(who),
+          subject: subject(),
           from_name: 'Formularz na aedigitalstudio.pl',
           email: mail.value,
           phone: tel ? tel.value.trim() : '',
@@ -134,7 +144,7 @@
       if (!res.ok || !data.success) throw new Error(data.message || res.status);
       say(document.createTextNode('Dziękuję, brief poszedł. Odpowiem na podany adres w ciągu jednego dnia roboczego.'));
       send.textContent = 'Wysłano';
-      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { form: 'brief' }); // only exists after consent
+      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { form: 'brief', start: start.value }); // only exists after consent
     } catch (err) {
       send.disabled = false;
       send.textContent = 'Wyślij brief →';

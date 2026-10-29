@@ -144,6 +144,23 @@ ul { list-style: none; }
 .offer .head { grid-column: 1 / 5; }
 .services { grid-column: 5 / 13; font: 700 clamp(2.125rem, 5vw, 4.5rem)/1.02 var(--face); letter-spacing: -0.045em; color: var(--red-ink); }
 
+/* ---------- free mockup ---------- */
+.free {
+  background: var(--bone-2); padding: clamp(96px, 12vw, 180px) var(--m);
+  display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(40px, 5vw, 72px) var(--gap); align-items: start;
+}
+.free-head { grid-column: 1 / 7; display: grid; gap: 24px; justify-items: start; }
+.free-head .lead { max-width: 24ch; }
+.free-card { grid-column: 7 / 13; background: var(--bone); padding: clamp(28px, 3vw, 44px); display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.free-card h3 { position: relative; padding-left: 30px; font: 500 var(--step-lead)/1.2 var(--face); letter-spacing: -0.02em; }
+.free-card h3::before { content: ""; position: absolute; left: 0; top: .32em; width: 14px; height: 14px; border-radius: 50%; background: var(--red); }
+.free-card p { max-width: 52ch; }
+.free-card ul { display: grid; gap: 10px; }
+.free-card li { position: relative; padding-left: 22px; max-width: 52ch; }
+.free-card li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: var(--red-ink); }
+.free-card .btn { margin-top: auto; }
+.free-note { max-width: 40ch; }
+
 /* ---------- work ---------- */
 .work { background: var(--desk); color: var(--bone); padding-top: clamp(96px, 12vw, 180px); }
 .work-head { padding: 0 var(--m) clamp(56px, 7vw, 104px); display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); align-items: end; }
@@ -441,7 +458,8 @@ button.btn { border: 0; cursor: pointer; }
   .collage { order: 3; width: 78%; align-self: flex-start; }
   .vertical { display: none; }
 
-  .about, .offer { display: flex; flex-direction: column; align-items: stretch; gap: 36px; }
+  .about, .offer, .free { display: flex; flex-direction: column; align-items: stretch; gap: 36px; }
+  .free-card { padding: 28px 20px 30px; }
   .services { font-size: clamp(2.125rem, 7.4vw, 4rem); }
   .benefits li { padding: 22px 16px 26px 44px; }
   .benefits li::before { left: 16px; top: 30px; }
