@@ -159,7 +159,6 @@ ul { list-style: none; }
 .free-card li { position: relative; padding-left: 22px; max-width: 52ch; }
 .free-card li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: var(--red-ink); }
 .free-card .btn { margin-top: auto; }
-.free-note { max-width: 40ch; }
 
 /* ---------- work ---------- */
 .work { background: var(--desk); color: var(--bone); padding-top: clamp(96px, 12vw, 180px); }
